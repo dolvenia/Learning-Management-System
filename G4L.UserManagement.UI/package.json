@@ -9,7 +9,8 @@
     "start": "npm run app",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -61,5 +62,9 @@
     "nodemon": "^2.0.20",
     "tslib": "^2.5.0",
     "typescript": "~4.6.2"
+  },
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.10"
   }
 }

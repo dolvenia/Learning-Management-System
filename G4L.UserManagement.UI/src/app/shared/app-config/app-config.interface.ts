@@ -1,7 +1,6 @@
 export interface AppConfig {
   production: boolean;
   apiUrl: string;
-  mockServer: string;
   defaultPassword: string;
   // googleApiKey?: string;
   firebase: {
