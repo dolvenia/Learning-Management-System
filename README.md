@@ -3,8 +3,8 @@
   </p>
 
 <p align="center">	
-  <a href="https://github.com/Moses-Shilenge/Geeks4Learning/actions/workflows/dotnet.yml">
-    <img src="https://github.com/Moses-Shilenge/Geeks4Learning/actions/workflows/dotnet.yml/badge.svg" alt="Build Status"/>
+  <a href="https://github.com/Geeks4LearningJHB/Learning-Management-System/actions/workflows/dotnet.yml">
+    <img src="https://github.com/Geeks4LearningJHB/Learning-Management-System/actions/workflows/dotnet.yml/badge.svg" alt="Build Status"/>
   </a>
 </p>
 
@@ -69,4 +69,4 @@ When asking for help on Teams, we always recommend asking on our [#Developer]() 
 
 # Further information
 
-For more information, such as a roadmap and the project's underlying principles, see our [Wiki](https://github.com/Moses-Shilenge/Geeks4Learning/wiki).
+For more information, such as a roadmap and the project's underlying principles, see our [Wiki](https://github.com/Geeks4LearningJHB/Learning-Management-System/wiki).
