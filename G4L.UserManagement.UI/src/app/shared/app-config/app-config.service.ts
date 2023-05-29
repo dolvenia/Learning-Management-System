@@ -6,7 +6,6 @@ export const APP_SERVICE_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 export const APP_CONFIG : AppConfig ={
     apiUrl: environment.apiUrl,
-    mockServer: environment.mockServer,
     production: environment.production,
     defaultPassword: environment.defaultPassword,
     // googleApiKey: environment.googleApiKey,
