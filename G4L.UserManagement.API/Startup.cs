@@ -61,11 +61,11 @@ namespace G4L.UserManagement.API
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
+                options.AddPolicy("AllowAngularOrigins",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200", "https://g4l.netlify.app", "https://g4l-api.azure-api.net", "https://geeks4learning.herokuapp.com");
-                        builder.AllowAnyOrigin()
+                        builder.WithOrigins("http://localhost:4200", "https://g4l.netlify.app", "https://g4l-api.azure-api.net", "https://geeks4learning.herokuapp.com")
+                               .AllowAnyOrigin()
                                .AllowAnyHeader()
                                .AllowAnyMethod();
                     });
@@ -107,7 +107,9 @@ namespace G4L.UserManagement.API
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("AllowAngularOrigins");
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 
