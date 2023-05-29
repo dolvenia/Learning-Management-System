@@ -57,8 +57,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2MB",
-                  "maximumError": "2MB"
+                  "maximumWarning": "3MB",
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -89,10 +89,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "G4L.UserManagement.UI:build:production"
+              "browserTarget": "G4L.UserManagement.UI:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "G4L.UserManagement.UI:build:development"
+              "browserTarget": "G4L.UserManagement.UI:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -100,7 +102,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "G4L.UserManagement.UI:build"
+            "browserTarget": "G4L.UserManagement.UI:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "test": {
