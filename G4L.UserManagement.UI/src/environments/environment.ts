@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44326/api',
+  apiUrl: 'https://geeks4learning.herokuapp.com/api',
   defaultPassword: 'P@ssword1',
   googleApiKey: '',
   firebase: {
