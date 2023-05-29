@@ -63,7 +63,7 @@ Read the error and follow the link provided to download ASP.NET Core Runtime 5.0
 
 ## Help
 
-If you need help with anything, we'll be happy to help you over an email : ushilmo@gmail.com, Alternatively, feel free to chat with us on the [#Developer]() channel on our [Teams workplace]().
+If you need help with anything, we'll be happy to help you over an email : lms@geeks4learning.com, Alternatively, feel free to chat with us on the [#Developer]() channel on our [Teams workplace]().
 
 When asking for help on Teams, we always recommend asking on our [#Developer]() channel, rather than [#General or any other channels]() directly. This is so that others can offer help and the answer may help someone else.
 
