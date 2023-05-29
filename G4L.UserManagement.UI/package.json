@@ -6,8 +6,9 @@
     "app": "ng serve",
     "mock:server": "npx json-server --watch server/data/goals/json/goals.json",
     "dev": "concurrently -n server,client -c green,yellow \"npm run mock:server\" \"npm run app\"",
-    "start": "npm run app",
-    "build": "ng build",
+    "proxy": "--proxy-config src/proxy.conf.json",
+    "start": "ng serve & proxy",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku postbuild": "ng build --prod"
