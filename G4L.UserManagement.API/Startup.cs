@@ -10,6 +10,7 @@ using G4L.UserManagement.Infrustructure.Services;
 using G4L.UserManagement.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,7 +66,6 @@ namespace G4L.UserManagement.API
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:4200", "http://localhost:8080", "https://g4l.netlify.app", "https://g4l-api.azure-api.net", "https://g4luat.herokuapp.com")
-                               .AllowAnyOrigin()
                                .AllowAnyHeader()
                                .AllowAnyMethod();
                     });
