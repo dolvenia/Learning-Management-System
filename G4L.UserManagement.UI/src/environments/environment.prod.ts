@@ -11,6 +11,6 @@ export const environment = {
     measurementId: 'G-6YRRYK2SKQ',
   },
   production: true,
-  apiUrl: 'http://0.0.0.0:22363/api',
+  apiUrl: 'http://0.0.0.0:8080/api',
   defaultPassword: 'P@ssword1',
 };
