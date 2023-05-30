@@ -1,1 +1,1 @@
-web: cd ./G4L.UserManagement.API && dotnet G4L.UserManagement.API.dll
+web: cd G4L.UserManagement.API && dotnet G4L.UserManagement.API.dll
