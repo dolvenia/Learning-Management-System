@@ -1,1 +1,1 @@
-web: cd ./G4L.UserManagement.API && dotnet
+web: cd /app/heroku_output && ./G4L.UserManagement.API

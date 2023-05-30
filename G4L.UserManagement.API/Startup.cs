@@ -61,7 +61,7 @@ namespace G4L.UserManagement.API
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAngularOrigins",
+                options.AddPolicy(myAllowSpecifyOrigin,
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:4200", "http://localhost:8080", "https://g4l.netlify.app", "https://g4l-api.azure-api.net", "https://g4luat.herokuapp.com")
@@ -107,7 +107,7 @@ namespace G4L.UserManagement.API
 
             app.UseRouting();
 
-            app.UseCors("AllowAngularOrigins");
+            app.UseCors(myAllowSpecifyOrigin);
 
             app.UseAuthorization();
 
