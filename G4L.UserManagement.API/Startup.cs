@@ -20,6 +20,8 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Npgsql;
+using Google;
 
 namespace G4L.UserManagement.API
 {
@@ -40,12 +42,14 @@ namespace G4L.UserManagement.API
             // configure strongly typed settings objects
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddDbContext<DatabaseContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                //Debuging purpose
-                options.EnableSensitiveDataLogging();
+         /*   services.AddDbContext<DatabaseContext>(options => {
+                options.Use(Configuration.GetConnectionString("DefaultConnection"));
             }
-            );
+            );*/
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseNpgsql(connectionString));
 
             services.AddControllers();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
