@@ -46,16 +46,16 @@ When running the frontend and backend, or only the backend, you can use the foll
 
 - Ask for `data-migration.sql` script
 - Password: `P@ssword1`
-## Super admin
+### Super admin
 - Email address: `super.admin@geeks4learning.com`
 
-## Admin
+### Admin
 - Email address: `admin@geeks4learning.com`
 
-## Trainee
+### Trainee
 - Email address: `trainee@geeks4learning.com`
 
-## Trainer
+### Trainer
 - Email address: `trainer@geeks4learning.com`
 
 Note: If you're running the backend using postman or third party application, you will need a JWT token for subsequent requests after logging in see our [connecting to the backend](todo) wiki page.
