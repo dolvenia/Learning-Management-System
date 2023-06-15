@@ -45,8 +45,18 @@ Windows Setup, Download and install the following:
 When running the frontend and backend, or only the backend, you can use the following test user:
 
 - Ask for `data-migration.sql` script
-- Email address: `****`
-- Password: `****`
+- Password: `P@ssword1`
+## Super admin
+- Email address: `super.admin@geeks4learning.com`
+
+## Admin
+- Email address: `admin@geeks4learning.com`
+
+## Trainee
+- Email address: `trainee@geeks4learning.com`
+
+## Trainer
+- Email address: `trainer@geeks4learning.com`
 
 Note: If you're running the backend using postman or third party application, you will need a JWT token for subsequent requests after logging in see our [connecting to the backend](todo) wiki page.
 
