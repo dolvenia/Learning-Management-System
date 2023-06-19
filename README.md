@@ -3,8 +3,8 @@
   </p>
 
 <p align="center">	
-  <a href="https://github.com/Moses-Shilenge/Geeks4Learning/actions/workflows/dotnet.yml">
-    <img src="https://github.com/Moses-Shilenge/Geeks4Learning/actions/workflows/dotnet.yml/badge.svg" alt="Build Status"/>
+  <a href="https://github.com/Geeks4LearningJHB/Learning-Management-System/actions/workflows/dotnet.yml">
+    <img src="https://github.com/Geeks4LearningJHB/Learning-Management-System/actions/workflows/dotnet.yml/badge.svg" alt="Build Status"/>
   </a>
 </p>
 
@@ -45,8 +45,18 @@ Windows Setup, Download and install the following:
 When running the frontend and backend, or only the backend, you can use the following test user:
 
 - Ask for `data-migration.sql` script
-- Email address: `****`
-- Password: `****`
+- Password: `P@ssword1`
+### Super admin
+- Email address: `super.admin@geeks4learning.com`
+
+### Admin
+- Email address: `admin@geeks4learning.com`
+
+### Trainee
+- Email address: `trainee@geeks4learning.com`
+
+### Trainer
+- Email address: `trainer@geeks4learning.com`
 
 Note: If you're running the backend using postman or third party application, you will need a JWT token for subsequent requests after logging in see our [connecting to the backend](todo) wiki page.
 
@@ -63,10 +73,10 @@ Read the error and follow the link provided to download ASP.NET Core Runtime 5.0
 
 ## Help
 
-If you need help with anything, we'll be happy to help you over an email : ushilmo@gmail.com, Alternatively, feel free to chat with us on the [#Developer]() channel on our [Teams workplace]().
+If you need help with anything, we'll be happy to help you over an email : lms@geeks4learning.com, Alternatively, feel free to chat with us on the [#Developer]() channel on our [Teams workplace]().
 
 When asking for help on Teams, we always recommend asking on our [#Developer]() channel, rather than [#General or any other channels]() directly. This is so that others can offer help and the answer may help someone else.
 
 # Further information
 
-For more information, such as a roadmap and the project's underlying principles, see our [Wiki](https://github.com/Moses-Shilenge/Geeks4Learning/wiki).
+For more information, such as a roadmap and the project's underlying principles, see our [Wiki](https://github.com/Geeks4LearningJHB/Learning-Management-System/wiki).

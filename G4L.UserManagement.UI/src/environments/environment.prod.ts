@@ -1,16 +1,16 @@
 export const environment = {
   firebase: {
-    projectId: 'filleupload-d41e8',
-    appId: '1:122086441414:web:bfcbd2530598889c0372c7',
-    databaseURL: 'https://filleupload-d41e8-default-rtdb.firebaseio.com',
-    storageBucket: 'filleupload-d41e8.appspot.com',
+    databaseURL: 'https://geeks4learning-1ef1e-default-rtdb.firebaseio.com/',
     locationId: 'us-central',
-    apiKey: 'AIzaSyDKycfv983HBcuJ7gWiL0ak02GQYH0N_8M',
-    authDomain: 'filleupload-d41e8.firebaseapp.com',
-    messagingSenderId: '122086441414',
-    measurementId: 'G-J58Z531TR4',
+    apiKey: 'AIzaSyCmnSa1MP3SS3MLCwfMd9VUBYnFVUjhpEI',
+    authDomain: 'geeks4learning-1ef1e.firebaseapp.com',
+    projectId: 'geeks4learning-1ef1e',
+    storageBucket: 'geeks4learning-1ef1e.appspot.com',
+    messagingSenderId: '927244532147',
+    appId: '1:927244532147:web:d8525c929e24ce264ab3c6',
+    measurementId: 'G-6YRRYK2SKQ',
   },
   production: true,
-  apiUrl: "https://geeks4learning-dotnet.herokuapp.com/api",
-  defaultPassword: "P@ssword1"
+  apiUrl: 'https://geeks4learning.herokuapp.com/api',
+  defaultPassword: 'P@ssword1',
 };
