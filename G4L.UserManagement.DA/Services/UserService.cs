@@ -34,7 +34,7 @@ namespace G4L.UserManagement.Infrustructure.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task RegisterUserAsync(RegisterRequest model)
+        public async Task RegisterUserAsync(UserRequest model)
         {
             await _userRepository.CreateUserAsync(model);
         }

@@ -24,7 +24,7 @@ namespace G4L.UserManagement.Infrustructure.Repositories
             _databaseContext = databaseContext;
             _mapper = mapper;
         }
-        public async Task CreateUserAsync(RegisterRequest model)
+        public async Task CreateUserAsync(UserRequest model)
         {
             // validate
             if (_databaseContext.Users.Any(x => x.IdNumber == model.IdNumber))
@@ -61,7 +61,7 @@ namespace G4L.UserManagement.Infrustructure.Repositories
             await _databaseContext.SaveChangesAsync();
         }
 
-        private async Task LinkSponsorAsync(RegisterRequest model, User user)
+        private async Task LinkSponsorAsync(UserRequest model, User user)
         {
             await Task.Run(() => {
                 switch (user.Role)

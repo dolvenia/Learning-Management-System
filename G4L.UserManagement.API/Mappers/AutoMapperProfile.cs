@@ -18,7 +18,7 @@ namespace G4L.UserManagement.API.Mappers
             CreateMap<User, TraineeResponse>().ReverseMap();
             CreateMap<User, TrainerResponse>().ReverseMap();
 
-            CreateMap<RegisterRequest, User>().ReverseMap();
+            CreateMap<UserRequest, User>().ReverseMap();
             CreateMap<LeaveRequest, Leave>().ReverseMap();
             CreateMap<ApproverRequest, Approver>().ReverseMap();
             CreateMap<DocumentRequest, Document>().ReverseMap();

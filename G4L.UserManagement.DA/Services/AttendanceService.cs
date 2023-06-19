@@ -40,7 +40,7 @@ namespace G4L.UserManagement.DA.Services
             return _mapper.Map<List<AttendanceResponse>>(attendance);
         }
 
-        private DateTime GetCheckOutTime() {
+        private static DateTime GetCheckOutTime() {
             DateTime checkOutTime = DateTime.Now;
             if (checkOutTime.Hour >= 7 && checkOutTime.Minute >= 30)
             {
@@ -53,7 +53,7 @@ namespace G4L.UserManagement.DA.Services
             return checkOutTime;
         }
 
-        private AttendanceStatus GetAttendanceStatus(DateTime checkInTime)
+        private static AttendanceStatus GetAttendanceStatus(DateTime checkInTime)
         {
             //present
             if (checkInTime.Hour >= 7 && checkInTime.Hour <= 8)
@@ -96,7 +96,7 @@ namespace G4L.UserManagement.DA.Services
             return _mapper.Map<AttendanceResponse>(attendance);
         }
 
-        private AttendanceRequest GetAttendanceRequest(Guid userId)
+        private static AttendanceRequest GetAttendanceRequest(Guid userId)
         {
             DateTime checkInTime = DateTime.Now;
 
@@ -111,7 +111,6 @@ namespace G4L.UserManagement.DA.Services
 
             return attendanceRequest;
         }
-
 
         public async Task<IEnumerable<Attendance>> GetPagedAttendancesAsync(int skip, int take)
         {

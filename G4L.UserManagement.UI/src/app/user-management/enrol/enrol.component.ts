@@ -11,6 +11,7 @@ import { CustomValidators } from 'src/app/shared/validators/custom-validators';
 import { environment } from 'src/environments/environment';
 import { SponsorService } from '../services/sponsor.service';
 import { UserService } from '../services/user.service';
+import { ClockInTime } from 'src/app/shared/global/clock-in-times';
 
 @Component({
   selector: 'app-enrol',
@@ -30,6 +31,7 @@ export class EnrolComponent implements OnInit, DoCheck {
   serverErrorMessage: any;
   editCrucialInfo: boolean = false;
   sponsors: any[] = [];
+  clockInTime = ClockInTime;
 
   dropdownList: any[] = [];
   selectedItems: any[] = [];
@@ -41,7 +43,7 @@ export class EnrolComponent implements OnInit, DoCheck {
     public modalRef: MdbModalRef<EnrolComponent>,
     private toastr: ToastrService,
     private sponsorService: SponsorService
-  ) { }
+  ) {}
 
   ngDoCheck(): void {
     console.log(this.formModel);
@@ -88,29 +90,43 @@ export class EnrolComponent implements OnInit, DoCheck {
         {
           value: user?.sponsorId || null,
           disabled: !this.editCrucialInfo,
-        }],
+        },
+      ],
       Clients: [
         {
           value: null,
           disabled: !this.editCrucialInfo,
-        }],
+        },
+      ],
       LearnershipStartDate: [
         {
           value: user?.learnershipStartDate
-            ? formatDate(new Date(user?.learnershipStartDate), 'yyyy-MM-dd', 'en')
+            ? formatDate(
+                new Date(user?.learnershipStartDate),
+                'yyyy-MM-dd',
+                'en'
+              )
             : formatDate(new Date('0001-01-01'), 'yyyy-MM-dd', 'en'),
           disabled: !this.editCrucialInfo,
         },
       ],
       Password: [environment.defaultPassword, Validators.required],
+      ClockInTime: [
+        {
+          value: user?.clockInTime || ClockInTime.Please_select_a_clock_in_time,
+          disabled: !this.editCrucialInfo,
+        },
+      ],
     });
   }
 
   getSponsorByUserId(userId: any): any {
     if (userId) {
-      this.sponsorService.getSponsorByUserId(userId).subscribe((response: any) => {
-        return response;
-      });
+      this.sponsorService
+        .getSponsorByUserId(userId)
+        .subscribe((response: any) => {
+          return response;
+        });
     }
   }
 
@@ -136,7 +152,9 @@ export class EnrolComponent implements OnInit, DoCheck {
 
     this.userService.addUser('User', this.formModel.value).subscribe(
       () => {
-        this.toastr.success(`${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully added.`);
+        this.toastr.success(
+          `${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully added.`
+        );
         this.modalRef.close(true);
       },
       (error) => {
@@ -156,7 +174,9 @@ export class EnrolComponent implements OnInit, DoCheck {
 
     this.userService.updateUser('User', this.formModel.value).subscribe(
       () => {
-        this.toastr.success(`${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully updated.`);
+        this.toastr.success(
+          `${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully updated.`
+        );
         this.modalRef.close(true);
       },
       (error) => {
@@ -262,6 +282,10 @@ export class EnrolComponent implements OnInit, DoCheck {
     this.formModel.controls['LearnershipStartDate'].patchValue(
       formatDate(new Date(new Date(today).toISOString()), 'yyyy-MM-dd', 'en')
     );
+  }
+
+  getDefaultClockInTime() {
+    return this.clockInTime['07:00 am'];
   }
 
   isDefault(stream: any) {

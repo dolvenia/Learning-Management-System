@@ -12,7 +12,7 @@ namespace G4L.UserManagement.BL.Interfaces
 {
     public interface IUserService
     {
-        Task RegisterUserAsync(RegisterRequest user);
+        Task RegisterUserAsync(UserRequest user);
         Task<AuthenticateResponse> AuthenticateUserAsync(AuthenticateRequest model);
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(Guid id);

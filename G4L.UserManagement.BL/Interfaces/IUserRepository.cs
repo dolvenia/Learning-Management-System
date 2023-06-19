@@ -12,7 +12,7 @@ namespace G4L.UserManagement.BL.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         Task<User> GetByUserByEmailAsync(string email);
-        Task CreateUserAsync(RegisterRequest user);
+        Task CreateUserAsync(UserRequest user);
         Task<IEnumerable<User>> GetUsersByRoleAsync(Role role);
     }
 }
