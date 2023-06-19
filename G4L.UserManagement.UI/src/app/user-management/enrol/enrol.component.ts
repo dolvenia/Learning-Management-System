@@ -149,8 +149,7 @@ export class EnrolComponent implements OnInit, DoCheck {
     }
 
     this.removeDropDownDefaults();
-
-    this.userService.addUser('User', this.formModel.value).subscribe(
+    this.userService.addUser(this.formModel.value).subscribe(
       () => {
         this.toastr.success(
           `${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully added.`
@@ -172,7 +171,7 @@ export class EnrolComponent implements OnInit, DoCheck {
 
     this.removeDropDownDefaults();
 
-    this.userService.updateUser('User', this.formModel.value).subscribe(
+    this.userService.updateUser(this.formModel.value).subscribe(
       () => {
         this.toastr.success(
           `${this.formModel.value?.Name} ${this.formModel.value?.Surname} was successfully updated.`
@@ -272,6 +271,7 @@ export class EnrolComponent implements OnInit, DoCheck {
     }
   }
 
+
   setG4LDefaults() {
     const today = Date.now();
 
@@ -282,10 +282,6 @@ export class EnrolComponent implements OnInit, DoCheck {
     this.formModel.controls['LearnershipStartDate'].patchValue(
       formatDate(new Date(new Date(today).toISOString()), 'yyyy-MM-dd', 'en')
     );
-  }
-
-  getDefaultClockInTime() {
-    return this.clockInTime['07:00 am'];
   }
 
   isDefault(stream: any) {

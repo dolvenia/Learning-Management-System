@@ -29,6 +29,6 @@ namespace G4L.UserManagement.BL.Entities
         public List<Leave> Leaves { get; set; }
         public List<SponsoredUser> SponsoredUser { get; set; }
         public List<Attendance> Attendances { get; set; }
-        public DateTime ClockInTime { get; set; }
+        public string ClockInTime { get; set; }
     }
 }

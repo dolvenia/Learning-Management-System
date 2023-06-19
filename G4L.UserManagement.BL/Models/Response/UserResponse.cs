@@ -16,6 +16,6 @@ namespace G4L.UserManagement.BL.Models.Response
         public string Phone { get; set; }
         public string Email { get; set; }
         public Role Role { get; set; }
-        public DateTime ClockInTime { get; set; }
+        public string ClockInTime { get; set; }
     }
 }

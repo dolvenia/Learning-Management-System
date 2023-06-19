@@ -24,11 +24,11 @@ export class UserService {
     return this.http.get(`${this.config.apiUrl}/user/${id}`);
   }
 
-  addUser(path: string, body: any): Observable<any>  {
+  addUser(body: any): Observable<any>  {
     return this.http.post(`${this.config.apiUrl}/user`, body);
   }
 
-  updateUser(path: string, body: any) {
+  updateUser( body: any) {
     return this.http.put(`${this.config.apiUrl}/user`, body);
   }
 

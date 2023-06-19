@@ -14,7 +14,8 @@ namespace G4L.UserManagement.BL.Models
         public string Surname { get; set; }
         [Required]
         public string IdNumber { get; set; }
-        public DateTime ClockInTime { get; set; }
+        [Required]
+        public string ClockInTime { get; set; }
         public string Phone { get; set; }
         [Required]
         public string Email { get; set; }
