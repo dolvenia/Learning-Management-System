@@ -106,7 +106,7 @@ export class EnrolComponent implements OnInit, DoCheck {
                 'yyyy-MM-dd',
                 'en'
               )
-            : formatDate(new Date('0001-01-01'), 'yyyy-MM-dd', 'en'),
+            : formatDate(new Date(), 'yyyy-MM-dd', 'en'),
           disabled: !this.editCrucialInfo,
         },
       ],

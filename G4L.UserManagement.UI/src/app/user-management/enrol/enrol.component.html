@@ -687,12 +687,10 @@
                       formModel.controls['ClockInTime'].touched
                   }"
                 >
-                  <option
-                    *ngFor="let clockintime of keys(clockInTime)"
-                    [ngValue]="clockintime"
-                  >
-                    {{ clockintime | removeUnderscore}}
-                  </option>
+                <option *ngFor="let clockintimeKey of keys(clockInTime)" [ngValue]="clockintimeKey">
+                  {{ clockintimeKey | removeUnderscore }}
+                </option>
+                
                 </select>
                 <div
                   class="red-text"
