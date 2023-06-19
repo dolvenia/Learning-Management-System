@@ -4,6 +4,8 @@ using G4L.UserManagement.BL.Entities;
 using G4L.UserManagement.BL.Enum;
 using G4L.UserManagement.BL.Interfaces;
 using G4L.UserManagement.BL.Models;
+using G4L.UserManagement.BL.Models.Request;
+using G4L.UserManagement.BL.Models.Response;
 using G4L.UserManagement.DA.Repositories;
 using G4L.UserManagement.Shared;
 using Microsoft.Extensions.Options;
@@ -22,77 +24,117 @@ namespace G4L.UserManagement.DA.Services
         private readonly IUserRepository _userRepository;
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
-        public AttendanceService(IAttendanceRepository attendanceRepository, IUserRepository userRepository, IOptions<AppSettings> appSettings, IMapper mapper)
+        private readonly IUserService _userService;
+
+        public AttendanceService(IUserService userService,IAttendanceRepository attendanceRepository, IUserRepository userRepository, IOptions<AppSettings> appSettings, IMapper mapper)
         {
             _attendanceRepository = attendanceRepository;
             _userRepository = userRepository;
             _appSettings = appSettings.Value;
             _mapper = mapper;
+            _userService = userService;
         }
-        public async Task<List<Attendance_Register>> GetAttendanceRegisterAsync(Guid userId)
+        public async Task<List<AttendanceResponse>> GetAttendanceRegisterAsync(Guid userId)
         {
             var attendance = await _attendanceRepository.ListAsync(x => x.UserId == userId);
-            return _mapper.Map<List<Attendance_Register>>(attendance);
+            return _mapper.Map<List<AttendanceResponse>>(attendance);
         }
 
-        public async Task SigningAttendanceRegisterAsync(Attendance_Register attendanceRegister)
-        {
-            var attendance = _mapper.Map<Attendance>(attendanceRegister);
-            if (await _attendanceRepository.QueryAsync(x => x.Date.Day == attendanceRegister.Date.Day && x.UserId == attendanceRegister.UserId) != null)
-                throw new AppException(JsonConvert.SerializeObject(new ExceptionObject
-                {
-                    ErrorCode = ServerErrorCodes.DuplicateAttendanceDate.ToString(),
-                    Message = "Duplicate attendance dates found on the system"
-                }));
-            //present
-            if (attendance.CheckInTime.Hour >= 7 && attendance.CheckInTime.Hour <= 8)
+        private DateTime GetCheckOutTime() {
+            DateTime checkOutTime = DateTime.Now;
+            if (checkOutTime.Hour >= 7 && checkOutTime.Minute >= 30)
             {
-                if (attendance.CheckInTime.Minute >= 0 && attendance.CheckInTime.Minute <= 15)
-                {
-                    attendance.Status = AttendanceStatus.Present;
-                }
-                attendance.Status = AttendanceStatus.Present;
+                checkOutTime = new DateTime(checkOutTime.Year, checkOutTime.Month, checkOutTime.Day, 17, 00, 0);
             }
-            //late
-            if (attendance.CheckInTime.Hour >= 8 && attendance.CheckInTime.Hour <= 10 || attendance.CheckInTime.Minute > 15)
+            else
             {
-                attendance.Status = AttendanceStatus.Late;
+                checkOutTime = new DateTime(checkOutTime.Year, checkOutTime.Month, checkOutTime.Day, 16, 00, 0);
             }
-            //absent
-            if (attendance.Date.Hour > 10)
-            {
-                attendance.Status = AttendanceStatus.Absent;
-            }
-            //leave
-            //if (attendance.Date.Hour > 10 && attendance.Leave_Status == Status.Partially_Approved)
-            //{
-            //    attendance.Status = AttendanceStatus.Leave;
-            //}
-            await _attendanceRepository.AddAsync(attendance);
+            return checkOutTime;
         }
+
+        private AttendanceStatus GetAttendanceStatus(DateTime checkInTime)
+        {
+            //present
+            if (checkInTime.Hour >= 7 && checkInTime.Hour <= 8)
+            {
+                if (checkInTime.Minute >= 0 && checkInTime.Minute <= 15)
+                {
+                    return AttendanceStatus.Present;
+                }
+                return AttendanceStatus.Late;
+            }
+            else {
+                //Aplying for half day leave
+                return AttendanceStatus.Leave;
+            }
+        }
+
+        public async Task<AttendanceResponse> SigningAttendanceRegisterAsync(Guid userId)
+        {
+            var user = await _userService.GetUserByIdAsync(userId) ?? throw new AppException(JsonConvert.SerializeObject(new ExceptionObject
+            {
+                ErrorCode = ServerErrorCodes.NotFound.ToString(),
+                Message = "User not found"
+            }));
+
+            var attendanceRequest = GetAttendanceRequest(userId);
+
+            var existingAttendance = await _attendanceRepository.QueryAsync(x =>
+                x.Date.Day == attendanceRequest.Date.Day &&
+                x.UserId == attendanceRequest.UserId);
+
+            if (existingAttendance != null)
+            {
+                return _mapper.Map<AttendanceResponse>(existingAttendance);
+            }
+
+            var attendance = _mapper.Map<Attendance>(attendanceRequest);
+
+            await _attendanceRepository.AddAsync(attendance);
+
+            return _mapper.Map<AttendanceResponse>(attendance);
+        }
+
+        private AttendanceRequest GetAttendanceRequest(Guid userId)
+        {
+            DateTime checkInTime = DateTime.Now;
+
+            AttendanceRequest attendanceRequest = new()
+            {
+                UserId = userId,
+                CheckInTime = checkInTime,
+                CheckOutTime = GetCheckOutTime(),
+                Status = GetAttendanceStatus(checkInTime),
+                Date = DateTime.Now
+            };
+
+            return attendanceRequest;
+        }
+
 
         public async Task<IEnumerable<Attendance>> GetPagedAttendancesAsync(int skip, int take)
         {
             return await _attendanceRepository.GetPagedListAsync(skip, take);
         }
 
-        public async Task UpdateAttendanceRegisterAsync(UpdateAttendance updateAttendance)
+        public async Task UpdateAttendanceRegisterAsync(AttendanceRequest attendanceRequest)
         {
-            var attendance = await _attendanceRepository.GetByIdAsync(updateAttendance.Id);
+           /* var attendance = await _attendanceRepository.GetByIdAsync(attendanceRequest.);
             // Update the following;
             attendance.CheckOutTime = updateAttendance.CheckOutTime;
 
-            await _attendanceRepository.UpdateAsync(attendance);
+            await _attendanceRepository.UpdateAsync(attendance);*/
         }
 
-        public async Task UpdateAttendanceGoalsAsync(UpdateAttendance updateAttendance)
+        public async Task UpdateAttendanceGoalsAsync(AttendanceRequest attendanceRequest)
         {
-            var attendance = await _attendanceRepository.GetByIdAsync(updateAttendance.Id);
+           // var attendance = await _attendanceRepository.GetByIdAsync(updateAttendance.Id);
             // Update the following;
             //attendance.Goal_Description = updateAttendance.Goal_Description;
             //attendance.Goal_summary = updateAttendance.Goal_summary;
             //attendance.Time_Limit = updateAttendance.Time_Limit;
-            await _attendanceRepository.UpdateAsync(attendance);
+         //   await _attendanceRepository.UpdateAsync(attendance);
         }
     }
 }

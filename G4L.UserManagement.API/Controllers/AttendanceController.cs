@@ -3,6 +3,8 @@ using G4L.UserManagement.BL.Entities;
 using G4L.UserManagement.BL.Enum;
 using G4L.UserManagement.BL.Interfaces;
 using G4L.UserManagement.BL.Models;
+using G4L.UserManagement.BL.Models.Request;
+using G4L.UserManagement.BL.Models.Response;
 using G4L.UserManagement.DA.Services;
 using G4L.UserManagement.Infrustructure.Services;
 using Microsoft.AspNetCore.Http;
@@ -24,21 +26,21 @@ namespace G4L.UserManagement.API.Controllers
             _logger = logger;
             _attendanceService = attendanceService;
         }
-        [Authorize(Role.Admin, Role.Learner, Role.Super_Admin)]
-        [HttpPost]
-        public async Task<IActionResult> CreateAttendanceAsync([FromBody] Attendance_Register attendanceRegister)
+       /* [Authorize(Role.Admin, Role.Learner, Role.Super_Admin)]*/
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> CreateAttendanceAsync(Guid userId)
         {
-            await _attendanceService.SigningAttendanceRegisterAsync(attendanceRegister);
-            return Ok(attendanceRegister);
+            AttendanceResponse attendance = await _attendanceService.SigningAttendanceRegisterAsync(userId);
+            return Ok(attendance);
         }
 
-        [Authorize(Role.Admin,Role.Super_Admin)]
+       /* [Authorize(Role.Admin,Role.Super_Admin)]
         [HttpPut]
-        public async Task<IActionResult> UpdateAttendanceAsync([FromBody] UpdateAttendance updateAttendance)
+        public async Task<IActionResult> UpdateAttendanceAsync([FromBody] AttendanceRequest attendanceRequest)
         {
             await _attendanceService.UpdateAttendanceGoalsAsync(updateAttendance);
             return Ok();
-        }
+        }*/
 
         [Authorize(Role.Super_Admin, Role.Admin, Role.Trainer, Role.Learner)]
         [HttpGet("{userId}")]

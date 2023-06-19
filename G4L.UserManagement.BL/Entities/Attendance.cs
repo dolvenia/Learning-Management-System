@@ -17,6 +17,5 @@ namespace G4L.UserManagement.BL.Entities
         public DateTime CheckOutTime { get; set; }
         public List<Goal> Goals { get; set; }
 
-
     }
 }

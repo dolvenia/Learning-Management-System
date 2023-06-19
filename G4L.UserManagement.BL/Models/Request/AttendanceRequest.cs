@@ -6,19 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace G4L.UserManagement.BL.Models
+namespace G4L.UserManagement.BL.Models.Request
 {
-    public class Attendance_Register
+    public class AttendanceRequest
     {
-    
-        public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public  DateTime Date { get; set; }
+        public DateTime Date { get; set; }
         public AttendanceStatus Status { get; set; }
-        public DateTime CheckInTime { get; set; } 
+        public DateTime CheckInTime { get; set; }
         public DateTime CheckOutTime { get; set; }
-        public Leave Leave { get; set; }
-        public Status LeaveStatus { get; set; }
-
     }
 }

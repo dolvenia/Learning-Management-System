@@ -1,5 +1,7 @@
 ﻿using G4L.UserManagement.BL.Entities;
 using G4L.UserManagement.BL.Models;
+using G4L.UserManagement.BL.Models.Request;
+using G4L.UserManagement.BL.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,10 @@ namespace G4L.UserManagement.BL.Interfaces
 {
     public interface IAttendanceService
     {
-        Task<List<Attendance_Register>> GetAttendanceRegisterAsync(Guid userId);
+        Task<List<AttendanceResponse>> GetAttendanceRegisterAsync(Guid userId);
         Task<IEnumerable<Attendance>> GetPagedAttendancesAsync(int skip, int take);
-        Task SigningAttendanceRegisterAsync(Attendance_Register attendanceRegister);
-        Task UpdateAttendanceGoalsAsync(UpdateAttendance updateAttendance);
-        Task UpdateAttendanceRegisterAsync(UpdateAttendance updateAttendance);
+        Task<AttendanceResponse> SigningAttendanceRegisterAsync(Guid userId);
+        Task UpdateAttendanceGoalsAsync(AttendanceRequest attendanceRequest);
+        Task UpdateAttendanceRegisterAsync(AttendanceRequest attendanceRequest);
     }
 }
