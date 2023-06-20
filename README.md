@@ -29,6 +29,8 @@ Windows Setup, Download and install the following:
 Windows Setup, Download and install the following:
 
 - [Visual Studio Code](https://code.visualstudio.com/download), you can use IDE of your choice.
+- [NodeJs](https://nodejs.org/en), you install the most recent LTS version of NodeJs.
+- [Angular](https://angular.io/guide/setup-local), follow the instructions on how to install Angular locally on your machine if you have not already.
 
 ## Repository
 
