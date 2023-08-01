@@ -11,7 +11,7 @@ import { IconsComponent } from './login/icons/icons.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserManagementComponent } from './user-management.component';
-import { ApplicantSuccessComponent } from './applicant-success/applicant-success.component';
+import { ApplicantSuccessComponent } from './learnership-application/applicant-success/applicant-success.component';
 
 @NgModule({
   declarations: [
